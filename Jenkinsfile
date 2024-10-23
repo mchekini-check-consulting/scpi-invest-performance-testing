@@ -1,13 +1,12 @@
 node("ci-node") {
 
     stage("checkout") {
-        checkout scmGit(branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/mchekini-check-consulting/staff-manager-performance-testing.git']])
+        checkout scm
     }
-
 
     stage("Performance Testing") {
         sh "chmod 777 mvnw"
-        sh "./mvnw gatling:test"
+        sh "./mvnw gatling:test -DuserName=$userName -Dpassword=$password -DnbUsers=$nbUsers -Dduration=$duration -Denvironment=$environment"
     }
 
     stage("Archive Report") {

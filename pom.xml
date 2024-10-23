@@ -11,8 +11,6 @@
     <!-- use the following if you're compiling with JDK 8-->
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <!-- comment the 2 lines above and uncomment the line bellow if you're compiling with JDK 11 or 17 -->
-    <!--    <maven.compiler.release>11</maven.compiler.release>-->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <gatling.version>${project.version}</gatling.version>
     <gatling-maven-plugin.version>4.2.9</gatling-maven-plugin.version>
@@ -21,6 +19,12 @@
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.keycloak</groupId>
+      <artifactId>keycloak-admin-client</artifactId>
+      <version>15.0.2</version> <!-- Remplacez par la version appropriée -->
+    </dependency>
+
     <dependency>
       <groupId>io.gatling.highcharts</groupId>
       <artifactId>gatling-charts-highcharts</artifactId>
@@ -44,8 +48,7 @@
         <artifactId>gatling-maven-plugin</artifactId>
         <version>${gatling-maven-plugin.version}</version>
         <configuration>
-          <!-- Enterprise Cloud (https://cloud.gatling.io/) configuration reference: https://gatling.io/docs/gatling/reference/current/extensions/maven_plugin/#working-with-gatling-enterprise-cloud -->
-          <!-- Enterprise Self-Hosted configuration reference: https://gatling.io/docs/gatling/reference/current/extensions/maven_plugin/#working-with-gatling-enterprise-self-hosted -->
+          <runMultipleSimulations>true</runMultipleSimulations>
         </configuration>
       </plugin>
     </plugins>
